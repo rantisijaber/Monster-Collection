@@ -2,13 +2,14 @@ import {ChangeEvent, Component} from "react";
 
 import React from 'react';
 import './App.css';
+import CardList from "./components/card-list/card-list";
 
 interface AppProps {
 
 }
 interface User {
-    name: string,
-    id: number,
+    name: string
+    id: number
 
 }
 interface AppState {
@@ -29,12 +30,12 @@ class App extends Component<AppProps, AppState> {
     componentDidMount(): void {
       fetch('https://jsonplaceholder.typicode.com/users')
           .then((response) => response.json())
-          .then((users: User[]) => this.setState({monsters: users}))
+          .then((users: User[]) : void => this.setState({monsters: users}))
 
   }
 
-    onSearchChange = (event: ChangeEvent<HTMLInputElement>): void => {
-            const searchField = event.target.value.toLowerCase();
+    onSearchChange  = (event: ChangeEvent<HTMLInputElement>): void => {
+            const searchField : string = event.target.value.toLowerCase();
             this.setState({ searchField: searchField })
     }
 
@@ -53,14 +54,11 @@ class App extends Component<AppProps, AppState> {
                     placeholder="Search for a monster"
                     onChange={onSearchChange}
                 />
-                {filteredMonsters.map((monster) => {
-                    return (
-                        <div key={monster.id}>
-                            <h1>{monster.name}</h1>
-                        </div>
-                    );
-                })}
+
+                <CardList monsters={filteredMonsters} />
+
             </div>
+
         );
     }
 }
