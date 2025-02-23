@@ -3,18 +3,20 @@ import {ChangeEvent, Component} from "react";
 import React from 'react';
 import './App.css';
 import CardList from "./components/card-list/card-list";
+import SearchBox from "./components/search-box/search-box";
 
 interface AppProps {
 
 }
-interface User {
-    name: string
-    id: number
+interface Monster {
+    name: string;
+    id: number;
+    email: string;
 
 }
 interface AppState {
-    monsters: User[]
-    searchField: string
+    monsters: Monster[];
+    searchField: string;
 
 }
 class App extends Component<AppProps, AppState> {
@@ -30,7 +32,7 @@ class App extends Component<AppProps, AppState> {
     componentDidMount(): void {
       fetch('https://jsonplaceholder.typicode.com/users')
           .then((response) => response.json())
-          .then((users: User[]) : void => this.setState({monsters: users}))
+          .then((monsters: Monster[]) : void => this.setState({monsters: monsters}))
 
   }
 
@@ -43,18 +45,17 @@ class App extends Component<AppProps, AppState> {
 
         const { monsters, searchField } = this.state;
         const {onSearchChange} = this;
-        const filteredMonsters: User[] = monsters.filter((monster) =>
+        const filteredMonsters: Monster[] = monsters.filter((monster) =>
             monster.name.toLowerCase().includes(searchField.toLowerCase())
         );
         return (
             <div className="App">
-                <input
-                    className="search-box"
-                    type="text"
-                    placeholder="Search for a monster"
-                    onChange={onSearchChange}
+                <h1 className="app-title">Monster Collection</h1>
+                <SearchBox
+                    className={"search-monsters"}
+                    onChangeHandler={onSearchChange}
+                    placeholder={"Search for Monsters"}
                 />
-
                 <CardList monsters={filteredMonsters} />
 
             </div>
