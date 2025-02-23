@@ -1,0 +1,30 @@
+/* Card Container */
+.card-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #95dada;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 15px;
+    cursor: pointer;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    transition: transform 0.25s ease-out;
+    max-width: 300px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.card-container:hover {
+    transform: scale(1.05);
+}
+
+.monster-name {
+    font-size: 16px;
+}
+
+.monster-email {
+    font-size: 14px;
+}
