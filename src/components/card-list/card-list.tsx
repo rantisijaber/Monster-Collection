@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React from "react";
 import "./card-list.css"
 import MonsterCard from "../monster-card/monster-card";
 
@@ -7,9 +7,7 @@ interface CardListProps {
 
 }
 
-class CardList extends Component<CardListProps> {
-    render() {
-        const { monsters } = this.props;
+const CardList : React.FC<CardListProps> = ({ monsters }) => {
         return (
             <div className="card-list">
                 {monsters.map((monster) => (
@@ -17,7 +15,7 @@ class CardList extends Component<CardListProps> {
                 ))}
             </div>
         );
-    }
 }
+
 export default CardList;
 

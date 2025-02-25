@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React from "react";
 import "./monster-card.css"
 
 interface MonsterCardProps {
@@ -7,11 +7,10 @@ interface MonsterCardProps {
 
 }
 
-class MonsterCard extends Component<MonsterCardProps> {
-render () {
-    const { id, name, email } = this.props.monster;
+const MonsterCard : React.FC<MonsterCardProps> = ( {monster}) => {
+    const { id, name, email } = monster;
     return (
-        <div key={id} className="card-container">
+        <div className="card-container">
             <img
                 alt={`monster ${name}`}
                 src={`https://robohash.org/${id}?set=set2&size=180x180`}
@@ -20,7 +19,7 @@ render () {
             <h2 className="monster-email">{email}</h2>
         </div>
     );
-}
+
 }
 export default MonsterCard;
 

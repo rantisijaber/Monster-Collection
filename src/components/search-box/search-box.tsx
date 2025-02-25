@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import './search-box.css'
 
 interface SearchBoxProps {
@@ -7,17 +7,16 @@ interface SearchBoxProps {
     className: string;
 }
 
-class SearchBox extends Component<SearchBoxProps> {
-    render() {
+const SearchBox: React.FC<SearchBoxProps> = ({ onChangeHandler, placeholder, className}) => {
         return (
             <input
-                className={`search-box ${this.props.className}`}
+                className={`search-box ${className}`}
                 type="search"
-                placeholder={ this.props.placeholder}
-                onChange={ this.props.onChangeHandler }
+                placeholder={ placeholder}
+                onChange={ onChangeHandler }
             />
         )
     }
-}
+
 
 export default SearchBox;
